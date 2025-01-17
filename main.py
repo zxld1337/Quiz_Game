@@ -1,4 +1,5 @@
 import tkinter as tk
+import random
 from dataclasses import dataclass
 
 
@@ -35,8 +36,8 @@ class Question:
 class QuizGameApp:
     def __init__(self, root):
         self.questions = Question.fromList(QUESTIONS) 
+        self.used = []
         
-
         self.root = root
         self.root.title("Quiz Game")
 
@@ -50,7 +51,18 @@ class QuizGameApp:
 
 
     def start_quiz(self):
-        print(self.questions)
+
+        while len(self.used) < len(self.questions):         
+            for widget in self.root.winfo_children():
+                widget.destroy()
+
+            
+
+            
+
+        
+
+        
         
 
 
