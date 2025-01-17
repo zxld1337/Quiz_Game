@@ -1,8 +1,19 @@
 import tkinter as tk
+from dataclasses import dataclass
 
 
 
-class QuizGameApp():
+
+@dataclass
+class Quiz:
+    question: str
+    answers: list[str]
+    correct: str
+
+    
+
+
+class QuizGameApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Quiz Game")
