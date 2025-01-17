@@ -3,6 +3,7 @@ import random
 from dataclasses import dataclass
 
 
+
 QUESTIONS = [
     ["Melyik nem József Attila műve?", "Vér és arany", "Nem én kiáltok", "külvárosi éj"],
     ["Melyik bolygó a Naprendszer legnagyobbja?", "Jupiter", "Mars", "Föld"],
@@ -15,6 +16,7 @@ QUESTIONS = [
     ["Melyik eseményt tartják a reformáció kezdetének?", "Luther 95 tételének kifüggesztése", "A francia forradalom", "Az amerikai függetlenségi háború"],
     ["Melyik folyamat során alakul ki a szén-dioxid?", "Égés", "Fotoszintézis", "Párolgás"]
 ]
+
 
 
 @dataclass
@@ -73,7 +75,7 @@ class QuizGameApp:
                 font=("Arial", 14),
                 command=lambda ans=answer: self.answer_selected(answer, quiz.correct)
             )
-            
+
             button.pack(pady=10)    
         
 
