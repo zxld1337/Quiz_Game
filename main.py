@@ -37,6 +37,7 @@ class QuizGameApp:
     def __init__(self, root):
         self.questions = Question.fromList(QUESTIONS) 
         self.used = []
+        self.player_answers = []
         
         self.root = root
         self.root.title("Quiz Game")
@@ -46,20 +47,40 @@ class QuizGameApp:
         self.welcome_label = tk.Label(root, text="Üdvözöllek a Quiz Játékomban!", font=("Arial", 16), pady=40)
         self.welcome_label.pack()
 
-        self.start_button = tk.Button(root, text="Kezdés", font=("Arial", 14), command=self.start_quiz)
+        self.start_button = tk.Button(root, text="Kezdés", font=("Arial", 14), command=self.play_quiz)
         self.start_button.pack(pady=40)
 
 
-    def start_quiz(self):
+    def play_quiz(self):
+        if (self.used) >= len(self.questions):
+            self.show_result_screen()
+                    
+        for widget in self.root.winfo_children():
+            widget.destroy()
 
-        while len(self.used) < len(self.questions):         
-            for widget in self.root.winfo_children():
-                widget.destroy()
-
-            question = self.get_new_question()
+        quiz = self.get_new_question()
+        self.used.append(quiz)
             
+        self.question_label = tk.Label(self.root, text=quiz.question, font=("Arial", 16), pady=20)
+        self.question_label.pack()
 
-             
+        random.shuffle(quiz.answers)
+
+        for answer in quiz.answers:
+            button = tk.Button(
+                self.root,
+                text=answer,
+                font=("Arial", 14),
+                command=lambda ans=answer: self.answer_selected(ans, quiz["correct"])
+            )
+            button.pack(pady=10)
+        
+
+        
+
+
+    def save_selected(self, answer):
+        self.player_answers.append(answer)
 
 
     def get_new_question(self):
@@ -71,7 +92,9 @@ class QuizGameApp:
                 not_used = False
         
         return temp
+    
 
+    
         
 
         
