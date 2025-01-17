@@ -108,7 +108,13 @@ class QuizGameApp:
         score_label = tk.Label(self.root, text=f"A jó válaszaid száma: {len(self.used)}/{self.player_corrects}", font=("Arial", 14), pady=20)
         score_label.pack()
 
-        
+        new_game_button = tk.Button(self.root, text="Újra probálom", font=("Arial", 14), command=self.reset_game)
+        new_game_button.pack(pady=10)
+
+        exit_button = tk.Button(self.root, text="Kilépés", font=("Arial", 14), command=self.root.quit)
+        exit_button.pack(pady=10)
+
+
 
             
 
