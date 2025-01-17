@@ -56,16 +56,26 @@ class QuizGameApp:
             for widget in self.root.winfo_children():
                 widget.destroy()
 
+            question = self.get_new_question()
             
 
-            
+             
+
+
+    def get_new_question(self):
+        temp = None
+        not_used = True 
+        while not_used:
+            temp = random.choice(self.questions)
+            if temp not in self.used:
+                not_used = False
+        
+        return temp
 
         
 
         
         
-
-
 
 if __name__ == "__main__":
     root = tk.Tk()
