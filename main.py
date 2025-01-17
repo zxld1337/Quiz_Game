@@ -43,12 +43,15 @@ class QuizGameApp:
         self.root.title("Quiz Game")
 
         self.root.geometry("700x400")
+        self.welcome_screen()
 
-        self.welcome_label = tk.Label(root, text="Üdvözöllek a Quiz Játékomban!", font=("Arial", 16), pady=40)
-        self.welcome_label.pack()
 
-        self.start_button = tk.Button(root, text="Kezdés", font=("Arial", 14), command=self.play_quiz)
-        self.start_button.pack(pady=40)
+    def welcome_screen(self):
+        welcome_label = tk.Label(root, text="Üdvözöllek a Quiz Játékomban!", font=("Arial", 16), pady=40)
+        welcome_label.pack()
+
+        start_button = tk.Button(root, text="Kezdés", font=("Arial", 14), command=self.play_quiz)
+        start_button.pack(pady=40)
 
 
     def play_quiz(self):                            
@@ -115,6 +118,16 @@ class QuizGameApp:
         exit_button.pack(pady=10)
 
 
+    def reset_game(self):
+        self.used = []
+        self.player_corrects = 0
+
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+        self.welcome_screen()
+
+        
 
             
 
