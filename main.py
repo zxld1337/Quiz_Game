@@ -51,17 +51,14 @@ class QuizGameApp:
         self.start_button.pack(pady=40)
 
 
-    def play_quiz(self):
-        if (self.used) >= len(self.questions):
-            self.show_result_screen()
-                    
+    def play_quiz(self):                            
         for widget in self.root.winfo_children():
             widget.destroy()
 
         quiz = self.get_new_question()
         self.used.append(quiz)
             
-        self.question_label = tk.Label(self.root, text=quiz.question, font=("Arial", 16), pady=20)
+        self.question_label = tk.Label(self.root, text=quiz.question, font=("Arial", 16), pady=40)
         self.question_label.pack()
 
         random.shuffle(quiz.answers)
@@ -81,7 +78,10 @@ class QuizGameApp:
         if answer == correct:
             self.player_corrects += 1
 
-        self.root.after(2000, self.play_quiz)
+        self.root.after(200, self.play_quiz)
+
+        if len(self.used) == len(self.questions):
+            self.show_result_screen()
 
 
     def get_new_question(self):
@@ -95,11 +95,22 @@ class QuizGameApp:
         return temp
     
 
-    
-        
+    def show_result_screen(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+        results_label = tk.Label(self.root, text="Gratulálok!", font=("Arial", 16), pady=20)
+        results_label.pack()
+
+        results_label = tk.Label(self.root, text="A quiz véget ért", font=("Arial", 16), pady=20)
+        results_label.pack()
+
+        score_label = tk.Label(self.root, text=f"A jó válaszaid száma: {len(self.used)}/{self.player_corrects}", font=("Arial", 14), pady=20)
+        score_label.pack()
 
         
-        
+
+            
 
 if __name__ == "__main__":
     root = tk.Tk()
