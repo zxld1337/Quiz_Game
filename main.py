@@ -37,7 +37,7 @@ class QuizGameApp:
     def __init__(self, root):
         self.questions = Question.fromList(QUESTIONS) 
         self.used = []
-        self.player_answers = []
+        self.player_corrects = 0
         
         self.root = root
         self.root.title("Quiz Game")
@@ -71,16 +71,17 @@ class QuizGameApp:
                 self.root,
                 text=answer,
                 font=("Arial", 14),
-                command=lambda ans=answer: self.answer_selected(ans, quiz["correct"])
+                command=lambda ans=answer: self.answer_selected(answer, quiz.correct)
             )
-            button.pack(pady=10)
+            button.pack(pady=10)    
         
 
-        
 
+    def answer_selected(self, answer, correct):
+        if answer == correct:
+            self.player_corrects += 1
 
-    def save_selected(self, answer):
-        self.player_answers.append(answer)
+        self.root.after(2000, self.play_quiz)
 
 
     def get_new_question(self):
