@@ -81,10 +81,10 @@ class QuizGameApp:
         if answer == correct:
             self.player_corrects += 1
 
-        self.root.after(200, self.play_quiz)
-
-        if len(self.used) == len(self.questions):
-            self.show_result_screen()
+        if len(self.used) < len(self.questions):
+            self.root.after(200, self.play_quiz)
+        else:
+            self.root.after(200, self.show_result_screen)
 
 
     def get_new_question(self):
