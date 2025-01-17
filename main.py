@@ -73,6 +73,7 @@ class QuizGameApp:
                 font=("Arial", 14),
                 command=lambda ans=answer: self.answer_selected(answer, quiz.correct)
             )
+            
             button.pack(pady=10)    
         
 
@@ -90,6 +91,7 @@ class QuizGameApp:
     def get_new_question(self):
         temp = None
         not_used = True 
+
         while not_used:
             temp = random.choice(self.questions)
             if temp not in self.used:
